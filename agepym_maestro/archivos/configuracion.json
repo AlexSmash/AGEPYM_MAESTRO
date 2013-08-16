@@ -1,0 +1,11 @@
+{
+    "CONFIGURACIONES": {
+        "BASEDATOS": {
+            "USER": "app", 
+            "HOST": "localhost", 
+            "PASS": "asdf", 
+            "PORT": "5432", 
+            "DATABASE": "_pruebaQT"
+        }
+    }
+}
