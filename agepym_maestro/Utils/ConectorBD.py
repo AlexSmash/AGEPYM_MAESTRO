@@ -55,25 +55,28 @@ class ConexionBD():
         self.conexion.commit()
         if cerrarAlFinalizar: self.cerrar()
         
-    def obtenerTodos(self,cursor_factory=None, cerrarAlFinalizar = True):
+    def obtenerTodos(self,cursor_factory=None, cerrarAlFinalizar = True, conversor= None):
         self.__crearCursor(cursor_factory)
         valores = self.cursor.fetchall()
         if cerrarAlFinalizar: self.cerrar()
+        if conversor is not None: valores = [conversor(valor) for valor in valores]
         return valores
     
-    def obtenerUno(self, cursor_factory=None, cerrarAlFinalizar = True):
+    def obtenerUno(self, cursor_factory=None, cerrarAlFinalizar = True, conversor= None):
         self.__crearCursor(cursor_factory)
         valor = self.cursor.fetchone()
         if cerrarAlFinalizar: self.cerrar()
+        if conversor is not None: valor = conversor(valor)
         return valor
     
-    def obtenerVarios(self, cant, cursor_factory = None, cerrarAlFinalizar = True):
+    def obtenerVarios(self, cant, cursor_factory = None, cerrarAlFinalizar = True, conversor= None):
         self.__crearCursor(cursor_factory)
         while True:
             valores = self.cursor.fetchmany(cant)
             if not valores: 
                 if cerrarAlFinalizar: self.cerrar()
                 break
+            if conversor is not None: valores = [conversor(valor) for valor in valores]
             yield valores
     
     def __crearCursor(self, cursor_factory = None):

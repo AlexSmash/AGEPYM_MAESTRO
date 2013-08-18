@@ -13,6 +13,9 @@ from ConectorBD import ConexionBD
 
 from Constantes import DIRECTORIO_TEMPORAL
 
+def convertirImagen(img):
+    return psycopg2.Binary(img)
+
 def nombreAleatorio(N = 5):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(N))  # @UnusedVariable
 
@@ -53,7 +56,7 @@ def pruebaImagenes():
     SQL_prueba_select = 'SELECT "IMAGE" FROM imagenes ORDER BY "ID" DESC;'
 
     # PARTE INSERCION BD:
-    Cnn = ConexionBD(SQL_prueba_insert,(psycopg2.Binary(readImage(path_prueba_lectura)),))
+    Cnn = ConexionBD(SQL_prueba_insert,(convertirImagen(readImage(path_prueba_lectura)),))
     Cnn.ejecutar()
 
     # PARTE GUARDADO EN HDD DESDE BD

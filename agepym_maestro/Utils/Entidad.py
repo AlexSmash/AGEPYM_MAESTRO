@@ -6,8 +6,8 @@ Created on 15/08/2013
 
 class BaseEntidad():
     '''
-    Clase que deberá ser implementada por entidades como:
-    asociado, beneficiario, pagaduría , etc
+    Clase que debera ser implementada por entidades como:
+    asociado, beneficiario, pagaduria , etc
     '''
         
     @classmethod
@@ -19,17 +19,17 @@ class BaseEntidad():
         raise NotImplementedError()
     
     @classmethod
-    def eliminar(cls,ent):
+    def eliminar(cls,cod):
         raise NotImplementedError()
     
     @classmethod
-    def consultarUno(cls,ent):
+    def consultarUno(cls,cod):
         raise NotImplementedError()
     
     @classmethod
-    def consultarTodos(cls,ent):
+    def consultarTodos(cls):
         raise NotImplementedError()
     
     @classmethod
-    def consultarN(cls,ent):
+    def consultarN(cls,N=3):
         raise NotImplementedError()
