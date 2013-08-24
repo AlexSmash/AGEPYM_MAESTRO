@@ -9,7 +9,7 @@ import json
 
 from Singleton import Singleton
 
-from Constantes import ARCHIVO_CONFIGURACION
+from Constantes import ARCHIVO_CONFIGURACION, CONFIGURACION_ORIGINAL
 
 def busquedaProfundidadDic(dic,llave):
     if llave in dic: return dic[llave]
@@ -40,6 +40,31 @@ def modificarProfundidadDic(dic, nuevo, llave):
 
 
 class Configuracion(Singleton):
+    '''
+    Clase configuración
+    Mientras la aplicación exista, solamente habrá una instancia de esta clase, ésto
+    se hace para evitar colisiones.
+    Uso:
+    from Utils.Configuracion import Configuracion
+    
+    cnf = Configuración()
+    
+    # si se desea obtener un valor de la configuracion:
+    database_name = cnf.obteerValor("DATABASE") # database_name = "_pruebaQT"
+    
+    # si se desea modificar un valor de la configuración:
+    nuevo_valor = "_pruebaQT2"
+    llave = "DATABASE"
+    cnf.modificarValor(nuevo_valor,llave)
+    # esto modifica el valor de la configuración en memoria
+    
+    # para guardar los cambios persistentemente:
+    cnf.guardarArchivo()
+    
+    # retornar la configuración por defecto:
+    cnf.restaurarPorDefecto() # Tambien guarda los cambios en el archivo
+    '''
+    
     _dic = {}
     def __init__(self):
         self._dic = json.load(open(ARCHIVO_CONFIGURACION))
@@ -64,6 +89,10 @@ class Configuracion(Singleton):
 
     def guardarArchivo(self):
         json.dump(self._dic,open(ARCHIVO_CONFIGURACION,mode="w"),indent=4)
+        
+    def restaurarPorDefecto(self):
+        self._dic = json.loads(CONFIGURACION_ORIGINAL)
+        self.guardarArchivo()
 
 def pruebaPatronSingleton():
     cnf = Configuracion()

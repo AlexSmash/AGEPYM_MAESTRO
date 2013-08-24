@@ -120,15 +120,8 @@ class Sesion(Singleton):
             cnn  = ConexionBD(sql, d)
             count = cnn.obtenerUno()[0]
         except Exception, e1:
-            try:
-                # Tratar de insertar el usuario con la contrasena en texto plano
-                sql = """SELECT COUNT(*) FROM usuario WHERE usuario=%(usuario)s and (contrasena=%(passw)s);"""
-                cnn  = ConexionBD(sql, d)
-                count = cnn.obtenerUno()[0]
-            except Exception, e2:
-                print(e1)
-                print(e2)
-                count = 0
+            count = 0
+            print(e1) 
                 
         if count>0:
             # si la cantidad de usuarios es mayor a cero retornar usuario

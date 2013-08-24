@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
 '''
 Created on 15/08/2013
 
@@ -22,6 +25,85 @@ def obtenerConexion():
     return conexion
 
 class ConexionBD():
+    '''
+    Clase que permite hacer consultas a la base de datos, esta clase es de bajo nivel
+    de preferencia usar las clases entidades si se trabaja directamente con las tablas
+    de la Base de Datos.
+    
+    Uso:
+    from utils.ConectorBD import ConexionBD
+    
+    # CONSULTA SELECT:
+    sql = "SELECT * FROM TABLA where(param1=%(p1)s);"
+    d = {}
+    d['p1'] = param1
+    cnn = ConexionBD(sql,d,ConexionBD.SELECT)
+    l = cnn.obtenerTodos()     # obtiene una lista de tuplas
+    l = cnn.obtenerUno()       # obtiene una lista con una tupla mejor uso: obtenerUno()[0]
+    lg = cnn.obtenerN(N=3)     # obtiene un generador de listas de N elementos
+    
+    # Uso avanzado de las funciones "obtener":
+    l = cnn.obtenerTodos(conversor=ConexionBD.DICCIONARIO) 
+        # retona una lista de (pseudo)diccionarios en los que cada elemento del diccionario es una columna de la seleccion
+    l = cnn.obtenerTodos(conversor=ConexionBD.DICCIONARIO_REAL)
+        # retona una lista de diccionarios en los que cada elemento del diccionario es una columna de la seleccion
+    l = cnn.obtenerTodos(conversor=ConexionBD.TUPLA_NOMBRADA)
+        # retona una lista de tuplas nombradas en los que se accesa a las columnas de la seleccion como si fuera un atributo de objeto
+    
+    # tambien se pueden definir nuevos conversores ejemplo:
+    #    Ejemplo diccionario simple:
+    def conversorTupla2Dic(tupla):
+        d = {}
+        d['col1'] = tupla[0]
+        d['col2'] = tupla[3]
+        d['col3'] = tupla[5]
+        ...
+        return d
+    
+    l = cnn.obtenerTodos(conversor=conversorTupla2Dic)
+        # retornar� una lista de diccionarios con llaves ['col1','col2','col3']
+    
+    #    Ejemplo objeto definido por el usuario:
+    
+    class Objeto():
+        def __init__(self,col1,col2,col3):
+            self.col1 = col1
+            self.col2 = col2
+            self.col3 = col3
+        
+        @classmethod
+        def tupla2Object(cls,tupla):
+            obj = Objeto(tupla[0],tupla[3],tupla[5])
+            return obj
+    
+    l = cnn.obtenerTodos(conversor=Objeto.tupla2Object)
+        # Retornará una lista de objetos del tipo Objeto
+    
+    # Nota todas las funciones soportan el parametro conversor.
+    
+    
+    # CONSULTAS INSERT, DELETE y UPDATE:
+    sql = "UPDATE TABLA SET param2=0 WHERE (param1=%(p1)s);"
+    d = {}
+    d['p1'] = param1
+    cnn = ConexionBD(sql,d,ConexionBD.SELECT)
+    l = cnn.ejecutar() # se ejecuta la consulta.
+    
+    # Cerrar la conexion a la bd luego de una consulta
+    
+    # Esta clase abre la conexion a la base de datos antes de hacer una consulta
+    # en los metodos obtenerTodos, obtenerUno, ObtenerVarios y Ejecutar, por defecto
+    # al finalizar la consulta (ocurriendo o nó un error) se cierra la conexion, 
+    # si es necesario mantener la conexion abierta, se envia un parametro a las funciones
+    # antes listadas de esta forma:
+    
+    cnn.obtenerTodos(cerrarAlFinalizar = True) # cierra la conexion luego de hacer la consulta
+    
+    
+    cnn.obtenerTodos(cerrarAlFinalizar = False) # mantiene la conexion abierta luego de finalizar la consulta
+    
+    # Esto aplica para las funciones: (obtenerTodos, obtenerUno, obtenerVarios y ejecutar).
+    '''
     
     # TIPOS SENTENCIA
     SELECT = "SENTENCIA SELECT"
@@ -103,7 +185,7 @@ def pruebaConectorBD():
 
         print("********************* PRUEBA PARA OBTENER VARIOS *********************")
         cnn = ConexionBD(SQL_PRUEBA, params = None, tipoConsulta= ConexionBD.SELECT)
-        for e in cnn.obtenerVarios(1):
+        for e in cnn.obtenerVarios(2):
             print(e)
         
         print("********************* PRUEBA PARA OBTENER UNO *********************")

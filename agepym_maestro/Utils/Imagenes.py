@@ -2,6 +2,31 @@
 Created on 16/08/2013
 
 @author: Lennin
+
+funciones varias que permiten manejar mas facilmente las imagenes
+Usos:
+
+from Utils.Imagenes import *
+
+path_img = "C:/PATH_A_IMAGEN/img.jpg"
+
+# convertir a binario un archivo de imagen
+img = readImage(path_img)
+
+# convertir de imagen a binario compatible con posgresql-psycopg2
+binario = convertirImagen(img)
+
+# obtener una cadena aleatoria de N caracteres
+N = 10
+cadenaAleatoria = nombreAleatorio(N) # obtiene N caracteres aleatorios
+
+# guardar un binario de imagen a un archivo:
+path_img = os.path.realpath(os.path.join("C:/PATH_A_IMAGEN/" ,cadenaAleatoria + ".jpg"))
+writeImage(img,path_img) # se guarda en "C:/PATH_A_IMAGEN/"+cadenaAleatoria+".jpg" 
+
+# para guardar la imagen en el directorio temporal y con un nombre aleatorio:
+nuevo_directorio = writeImage(img) # nuevo directorio tiene el camino hacia la imagen guardada
+
 '''
 import psycopg2 # @UnresolvedImport
 import sys

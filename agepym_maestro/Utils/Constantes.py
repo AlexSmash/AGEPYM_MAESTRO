@@ -2,10 +2,13 @@
 Created on 15/08/2013
 
 @author: Lennin
+
+Contiene valores de constantes a ser utilizadas en el proyecto
+
 '''
 import os
 
-configuracion = """
+CONFIGURACION_ORIGINAL = """
 {
     "CONFIGURACIONES":{
         "BASEDATOS":{
