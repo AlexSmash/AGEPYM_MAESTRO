@@ -1,4 +1,4 @@
-AGEPYM_MAESTRO
+MAESTRO
 ==============
 
 # Sistema de gestion de asociados AGEPYM
