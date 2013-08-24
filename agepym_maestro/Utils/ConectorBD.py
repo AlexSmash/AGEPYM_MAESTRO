@@ -8,6 +8,7 @@ import psycopg2  # @UnresolvedImport
 from psycopg2.extras import DictCursor, RealDictCursor, NamedTupleCursor # @UnresolvedImport
 from psycopg2 import errorcodes # @UnresolvedImport
 from Configuracion import Configuracion
+from Utils import Constantes
 
 def obtenerConexion():
     cnf = Configuracion()._dic["CONFIGURACIONES"]["BASEDATOS"]
@@ -51,6 +52,7 @@ class ConexionBD():
         
     def ejecutar(self,cerrarAlFinalizar = True):
         self.cursor = self.conexion.cursor()
+        if Constantes._DEBUG: print(self.cursor.mogrify(self.sentencia, self.parametros))
         self.cursor.execute(self.sentencia, self.parametros)
         self.conexion.commit()
         if cerrarAlFinalizar: self.cerrar()
@@ -85,7 +87,8 @@ class ConexionBD():
                                           cursor_factory is ConexionBD.TUPLA_NOMBRADA):
             self.cursor = self.conexion.cursor()
         else:
-            self.cursor = self.conexion.cursor(cursor_factory)
+            self.cursor = self.conexion.cursor(cursor_factory)        
+        if Constantes._DEBUG: print(self.cursor.mogrify(self.sentencia, self.parametros))
         self.cursor.execute(self.sentencia, self.parametros)
         
 def pruebaConectorBD():

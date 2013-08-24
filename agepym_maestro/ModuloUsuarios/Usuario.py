@@ -60,10 +60,10 @@ class Usuario(Entidad.BaseEntidad):
         self.dir_foto = dir_foto
         
     def __str__(self):
-        return self.obtenerDiccionarioDatos()
+        return str(self.obtenerDiccionarioDatos())
     
     def __unicode__(self):
-        return self.obtenerDiccionarioDatos()
+        return unicode(str(self.obtenerDiccionarioDatos()))
     
     def __repr__(self):
         return str(self.obtenerDiccionarioDatos())
@@ -151,7 +151,7 @@ def pruebasUsuario():
     user = Usuario(user, pasw, nom, nivel, cargo, imagen)
     Usuario.agregar(user)
     
-    print(Usuario.consultarTodos())
+    print(Usuario.consultarUno("Lennin"))
     
 if __name__ == "__main__":
     pruebasUsuario()

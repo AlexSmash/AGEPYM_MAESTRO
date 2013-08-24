@@ -11,3 +11,7 @@ class Singleton(object):
             cls._instance = super(Singleton, cls).__new__(
                                 cls, *args, **kwargs)
         return cls._instance
+
+    @classmethod
+    def borrar(cls):
+        Singleton._instance = None
