@@ -23,7 +23,6 @@ class Departamento(BaseEntidad):
     SENTENCIA_SELECT_TODOS = "SELECT * FROM DEPARTAMENTO;"
     
     SENTENCIA_SELECT_UNO = "SELECT * FROM DEPARTAMENTO WHERE idDepto=%(idDepto)s;"
-    
     SENTENCIA_INSERT = """INSERT INTO DEPARTAMENTO(idDepto, nomDepto)
                             VALUES (%(idDepto)s,%(nomDepto)s;"""
                                                         
@@ -40,6 +39,7 @@ class Departamento(BaseEntidad):
         '''
         self.idDepto=idDepto
         self.nomDepto=nomDepto
+
         
     @classmethod
     def consultarUno(cls,cod):
@@ -87,4 +87,3 @@ class Departamento(BaseEntidad):
         d['idDepto']=cod
         cnn = ConexionBD(Departamento.SENTENCIA_DELETE,d,ConexionBD.DELETE)
         cnn.ejecutar()
-    
