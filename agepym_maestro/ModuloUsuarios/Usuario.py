@@ -40,7 +40,7 @@ class Usuario(Entidad.BaseEntidad):
     
     N = 5
     lg = Usuario.consultarN(N) # obtiene un iterador que contiene N usuarios por iteración
-    
+  ;  
     # Una forma de usarlo
     for l in lg:        # recorre el generador "lg" e itera guardando en "l"
         for u in l:     # recorre la lista "l" e itera guardando en "u"
