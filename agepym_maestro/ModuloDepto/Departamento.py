@@ -14,13 +14,13 @@ class Departamento(BaseEntidad):
     
     SENTENCIA_SELECT_UNO = "SELECT * FROM DEPARTAMENTO WHERE idDepto=%(parametroID)s;"
     
-    SENTENCIA_INSERT = """INSERT INTO usuario(usuario, contrasena, nom_completo, nivel, cargo_usuario, foto)
-                            VALUES (%(usuario)s, encode(digest(%(passw)s, 'sha256'), 'hex'), %(nombre)s, %(nivel)s, %(cargo)s, %(foto)s);"""
+    SENTENCIA_INSERT = """INSERT INTO DEPARTAMENTO(idDepto, nom_depto)
+                            VALUES (%(idDepto)s,%(nom_depto)s;"""
                                                         
-    SENTENCIA_UPDATE ="""UPDATE usuario SET nom_completo=%(nombre)s, nivel=%(nivel)s, cargo_usuario=%(cargo)s, 
-                                foto=%(foto)s WHERE usuario=%(usuario)s;"""
+    SENTENCIA_UPDATE ="""UPDATE DEPARTAMENTO SET nom_depto=%(nom_depto)s
+                                WHERE idDepto=%(idDepto)s;"""
                                                              
-    SENTENCIA_DELETE = "DELETE FROM usuario WHERE usuario=%(usuario)s;"
+    SENTENCIA_DELETE = "DELETE FROM DEPARTAMENTO WHERE idDepto=%(idDepto)s;"
 
 
     def __init__(self,idDepto,nom_depto):
@@ -60,3 +60,28 @@ class Departamento(BaseEntidad):
     def consultarTodos(cls):
         cnn = ConexionBD(Departamento.SENTENCIA_SELECT_TODOS)
         return cnn.obtenerTodos(conversor=Departamento.tupla2Departamento)
+    
+    @classmethod
+    def agregar(cls,ent):
+        d={}
+        d['idDepto']=ent.idDepto
+        d['nomDepto']= ent.nomDepto
+        cnn = ConexionBD(Departamento.SENTENCIA_INSERT,d,ConexionBD.INSERT)
+        cnn.ejecutar()
+    
+    @classmethod
+    def modificar(cls,ent):
+        d={}
+        d['idDepto']=ent.idDepto
+        d['nomDepto']= ent.nomDepto
+        cnn = ConexionBD(Departamento.SENTENCIA_UPDATE,d,ConexionBD.UPDATE)
+        cnn.ejecutar()
+    
+    @classmethod
+    def eliminar(cls,cod):
+        d={}
+        d['idDepto']=cod
+        cnn = ConexionBD(Departamento.SENTENCIA_DELETE,d,ConexionBD.DELETE)
+        cnn.ejecutar()
+    
+    
