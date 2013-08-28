@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
+from Utils.Constantes import absPath
 
 class Ui_gPromotorasWindow(object):
     def setupUi(self, gPromotorasWindow):
@@ -83,7 +84,7 @@ class Ui_gPromotorasWindow(object):
         self.buscarBtn = QtGui.QPushButton(self.groupBox)
         self.buscarBtn.setAutoFillBackground(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("lupa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/lupa.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.buscarBtn.setIcon(icon)
         self.buscarBtn.setObjectName("buscarBtn")
         self.verticalLayoutBotones.addWidget(self.buscarBtn)
@@ -91,7 +92,7 @@ class Ui_gPromotorasWindow(object):
         self.verticalLayoutBotones.addItem(spacerItem1)
         self.agregarBtn = QtGui.QPushButton(self.groupBox)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("addbd2.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/addbd2.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.agregarBtn.setIcon(icon1)
         self.agregarBtn.setIconSize(QtCore.QSize(16, 16))
         self.agregarBtn.setObjectName("agregarBtn")
@@ -100,7 +101,7 @@ class Ui_gPromotorasWindow(object):
         self.verticalLayoutBotones.addItem(spacerItem2)
         self.modificarBtn = QtGui.QPushButton(self.groupBox)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("lapiz.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/lapiz.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.modificarBtn.setIcon(icon2)
         self.modificarBtn.setObjectName("modificarBtn")
         self.verticalLayoutBotones.addWidget(self.modificarBtn)
@@ -108,7 +109,7 @@ class Ui_gPromotorasWindow(object):
         self.verticalLayoutBotones.addItem(spacerItem3)
         self.eliminarBtn = QtGui.QPushButton(self.groupBox)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("trash3.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/trash3.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.eliminarBtn.setIcon(icon3)
         self.eliminarBtn.setObjectName("eliminarBtn")
         self.verticalLayoutBotones.addWidget(self.eliminarBtn)
@@ -116,7 +117,7 @@ class Ui_gPromotorasWindow(object):
         self.verticalLayoutBotones.addItem(spacerItem4)
         self.guardarBtn = QtGui.QPushButton(self.groupBox)
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("save2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/save2.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.guardarBtn.setIcon(icon4)
         self.guardarBtn.setObjectName("guardarBtn")
         self.verticalLayoutBotones.addWidget(self.guardarBtn)
@@ -124,7 +125,7 @@ class Ui_gPromotorasWindow(object):
         self.verticalLayoutBotones.addItem(spacerItem5)
         self.cancelarBtn = QtGui.QPushButton(self.groupBox)
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("cancel.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/cancel.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.cancelarBtn.setIcon(icon5)
         self.cancelarBtn.setObjectName("cancelarBtn")
         self.verticalLayoutBotones.addWidget(self.cancelarBtn)
@@ -169,7 +170,7 @@ class Ui_gPromotorasWindow(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.toolButton = QtGui.QToolButton(self.widget)
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("images.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/images.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton.setIcon(icon6)
         self.toolButton.setAutoRaise(True)
         self.toolButton.setObjectName("toolButton")
@@ -185,7 +186,7 @@ class Ui_gPromotorasWindow(object):
         self.toolButton_2 = QtGui.QToolButton(self.widget)
         self.toolButton_2.setAutoFillBackground(False)
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("descarga.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/descarga.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_2.setIcon(icon7)
         self.toolButton_2.setAutoRaise(True)
         self.toolButton_2.setObjectName("toolButton_2")

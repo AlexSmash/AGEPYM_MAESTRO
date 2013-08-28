@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
 '''
 Created on 27/08/2013
 
@@ -5,7 +7,7 @@ Created on 27/08/2013
 '''
 
 from PySide import QtCore # @UnresolvedImport
-from PySide.QtGui import QMainWindow, QApplication # @UnresolvedImport
+from PySide.QtGui import QMainWindow, QApplication, QMessageBox # @UnresolvedImport
 from Ventanas.LoginWindow import Ui_LogInWindow
 from ModuloUsuarios.Sesion import Sesion
 from Utils.Constantes import absPath
@@ -31,16 +33,29 @@ class LoginWindow(QMainWindow, Ui_LogInWindow):
         self.sesion = Sesion(username=nombre)
         if self.sesion._esValida == True :
             self.fotoLbl.setPixmap(absPath(self.sesion.Usuario.dir_foto))
+        else:
+            self.limpiar()
         
     def aceptar(self):
         #verificacion password
         #self.label.setText("Aceptar")
+        nombre = self.usuarioTxt.text()
         password = self.contraTxt.text()
-        self.sesion.verificarPassword(password)
+        if not self.sesion.esValida() or self.sesion is None:
+            self.sesion = Sesion(username=nombre,password=password)
+        else:
+            self.sesion.verificarPassword(password)
         if self.sesion.esValida() :
+            self.fotoLbl.setPixmap(absPath(self.sesion.Usuario.dir_foto))
             self.label.setText("Usuario valido")
             self.limpiar()
             #redirigir a ventana principal, con sesion
+        else:
+            # Mostrar dialogo de usuario no válido
+            ret = QMessageBox.critical(self, self.tr("MAESTRO"),
+                               self.tr("Las credenciales no son validas"),
+                               QMessageBox.Ok)
+            ret.exec_()
 
     def cancelar(self):
         self.limpiar()
