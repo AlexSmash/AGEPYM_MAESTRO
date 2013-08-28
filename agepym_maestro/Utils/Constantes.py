@@ -36,7 +36,7 @@ _DIRECCION_ACTUAL = os.path.dirname(os.path.realpath(__file__))
 DIRECTORIO_PROYECTO = os.path.realpath(os.path.join(_DIRECCION_ACTUAL ,".."))
 
 def absPath(relativePath):
-    return os.path.realpath(os.path.join(_DIRECCION_ACTUAL ,relativePath))
+    return os.path.realpath(os.path.join(DIRECTORIO_PROYECTO ,relativePath))
 
 ARCHIVO_CONFIGURACION = absPath("archivos/configuracion.json")
 
