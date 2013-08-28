@@ -8,6 +8,7 @@ from PySide import QtCore # @UnresolvedImport
 from PySide.QtGui import QMainWindow, QApplication # @UnresolvedImport
 from Ventanas.LoginWindow import Ui_LogInWindow
 from ModuloUsuarios.Sesion import Sesion
+from Utils.Constantes import absPath
 import sys
 
 class LoginWindow(QMainWindow, Ui_LogInWindow):
@@ -29,7 +30,7 @@ class LoginWindow(QMainWindow, Ui_LogInWindow):
         nombre = self.usuarioTxt.text()
         self.sesion = Sesion(username=nombre)
         if self.sesion._esValida == True :
-            self.fotoLbl.setPixmap(self.sesion.Usuario.foto)
+            self.fotoLbl.setPixmap(absPath(self.sesion.Usuario.dir_foto))
         
     def aceptar(self):
         #verificacion password

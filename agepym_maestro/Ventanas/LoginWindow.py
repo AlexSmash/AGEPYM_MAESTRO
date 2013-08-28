@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
+from Utils.Constantes import absPath
 
 class Ui_LogInWindow(object):
     def setupUi(self, LogInWindow):
@@ -32,7 +33,7 @@ class Ui_LogInWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         self.fotoLbl = QtGui.QLabel(self.widget)
         self.fotoLbl.setText("")
-        self.fotoLbl.setPixmap(QtGui.QPixmap("archivos/imagenes/images.jpg"))
+        self.fotoLbl.setPixmap(QtGui.QPixmap(absPath("archivos/imagenes/images.jpg")))
         self.fotoLbl.setObjectName("fotoLbl")
         self.gridLayout.addWidget(self.fotoLbl, 1, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -67,13 +68,13 @@ class Ui_LogInWindow(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.aceptarBtn = QtGui.QPushButton(self.widget_2)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("archivos/imagenes/ok.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/ok.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.aceptarBtn.setIcon(icon)
         self.aceptarBtn.setObjectName("aceptarBtn")
         self.horizontalLayout.addWidget(self.aceptarBtn)
         self.cancelarBtn = QtGui.QPushButton(self.widget_2)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("archivos/imagenes/cancel.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(absPath("archivos/imagenes/cancel.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.cancelarBtn.setIcon(icon1)
         self.cancelarBtn.setObjectName("cancelarBtn")
         self.horizontalLayout.addWidget(self.cancelarBtn)
