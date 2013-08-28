@@ -57,6 +57,7 @@ class Ui_LogInWindow(object):
         self.label_2.setObjectName("label_2")
         self.verticalLayout_2.addWidget(self.label_2)
         self.contraTxt = QtGui.QLineEdit(self.centralwidget)
+        self.contraTxt.setEchoMode(QtGui.QLineEdit.Password )
         self.contraTxt.setObjectName("contraTxt")
         self.verticalLayout_2.addWidget(self.contraTxt)
         spacerItem5 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
