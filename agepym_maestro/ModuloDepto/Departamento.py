@@ -11,38 +11,40 @@ from Utils.ConectorBD import ConexionBD
 class Departamento(BaseEntidad):
     '''
     classdocs
-    '''
-    SENTENCIA_SELECT_TODOS = "SELECT * FROM DEPARTAMENTO;"
-    
-    SENTENCIA_SELECT_UNO = "SELECT * FROM DEPARTAMENTO WHERE idDepto=%(parametroID)s;"
-    
-    SENTENCIA_INSERT = """INSERT INTO DEPARTAMENTO(idDepto, nom_depto)
-                            VALUES (%(idDepto)s,%(nom_depto)s;"""
-                                                        
-    SENTENCIA_UPDATE ="""UPDATE DEPARTAMENTO SET nom_depto=%(nom_depto)s
-                                WHERE idDepto=%(idDepto)s;"""
-                                                             
-    SENTENCIA_DELETE = "DELETE FROM DEPARTAMENTO WHERE idDepto=%(idDepto)s;"
-
-
-    def __init__(self,idDepto,nom_depto):
-        '''
-        Constructor
-        TABLA USADA EN LA BD: 
+    TABLA USADA EN LA BD: 
     
         create table DEPARTAMENTO (
            idDepto              INTEGER              not null,
            nom_depto            VARCHAR(70)          not null,
            constraint PK_DEPTO primary key (idDepto)
         );
+    
+    '''
+    SENTENCIA_SELECT_TODOS = "SELECT * FROM DEPARTAMENTO;"
+    
+    SENTENCIA_SELECT_UNO = "SELECT * FROM DEPARTAMENTO WHERE idDepto=%(parametroID)s;"
+    
+    SENTENCIA_INSERT = """INSERT INTO DEPARTAMENTO(idDepto, nomDepto)
+                            VALUES (%(idDepto)s,%(nomDepto)s;"""
+                                                        
+    SENTENCIA_UPDATE ="""UPDATE DEPARTAMENTO SET nomDepto=%(nomDepto)s
+                                WHERE idDepto=%(idDepto)s;"""
+                                                             
+    SENTENCIA_DELETE = "DELETE FROM DEPARTAMENTO WHERE idDepto=%(idDepto)s;"
+
+
+    def __init__(self,idDepto,nomDepto):
+        '''
+        Constructor
+        
         '''
         self.idDepto=idDepto
-        self.nom_depto=nom_depto
+        self.nomDepto=nomDepto
         
     @classmethod
     def consultarUno(cls,cod):
         d={}
-        d["parametroID"]=cod
+        d["idDepto"]=cod
         cnn=ConexionBD(Departamento.SENTENCIA_SELECT_UNO, d, ConexionBD.SELECT)
         dep = cnn.obtenerUno(conversor=Departamento.tupla2Departamento) # print(dep) >> (1,"Santa Ana")
         return dep
