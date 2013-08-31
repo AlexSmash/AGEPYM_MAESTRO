@@ -1,7 +1,7 @@
+
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-'''
-Created on 26/08/2013
+'''Created on 26/08/2013
 
 @author: usuario
 '''
