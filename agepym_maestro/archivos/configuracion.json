@@ -1,11 +1,17 @@
 {
     "CONFIGURACIONES": {
         "BASEDATOS": {
-            "USER": "app", 
-            "HOST": "localhost", 
-            "PASS": "asdf", 
             "PORT": "5432", 
-            "DATABASE": "_pruebaQT"
+            "HOST": "localhost", 
+            "DATABASE": "_pruebaQT", 
+            "USER": "app", 
+            "PASS": "asdf"
+        }, 
+        "ESTILO": {
+            "ICONOS": {
+            	"TEMAICONOS": "elementary",
+            	"TEMASICONOSDISPONIBLES": ["elementary","Moka"]
+            }
         }
     }
 }
