@@ -29,6 +29,9 @@ writeImage(img,path_img) # se guarda en "C:/PATH_A_IMAGEN/"+cadenaAleatoria+".jp
 # para guardar la imagen en el directorio temporal y con un nombre aleatorio:
 nuevo_directorio = writeImage(img) # nuevo directorio tiene el camino hacia la imagen guardada
 
+# para obtener la direccion absoluta de un icono
+direccion = obtenerPathIcono('add.png')
+
 '''
 import psycopg2 # @UnresolvedImport
 import sys
@@ -38,7 +41,18 @@ import os
 
 from ConectorBD import ConexionBD
 
-from Constantes import DIRECTORIO_TEMPORAL
+from Constantes import DIRECTORIO_TEMPORAL, absPath, DIRECTORIO_PROYECTO
+from Configuracion import Configuracion
+
+def obtenerPathIcono(nombreIcono):
+    if nombreIcono == "user.png":
+        return absPath("archivos/Iconos/user.png")
+    cnf = Configuracion()
+    temaIconos = cnf.obtenerValor("TEMAICONOS")
+    if temaIconos is not None and temaIconos in cnf.obtenerValor("TEMASICONOSDISPONIBLES"):
+        return absPath("archivos/Iconos/"+temaIconos+"/"+nombreIcono)
+    else:
+        return None
 
 def convertirImagen(img):
     return psycopg2.Binary(img)
@@ -96,6 +110,16 @@ def pruebaImagenes():
     print("PATH ESCRITURA: " + pth)
     # PRUEBA FINAL
     assert readImage(pth) == readImage(path_prueba_lectura)
+    
+    # Busqueda de un icono
+    direct = obtenerPathIcono('add.png')
+    print(direct)
+    assert direct  == os.path.realpath(os.path.join(DIRECTORIO_PROYECTO ,"archivos/Iconos/elementary/add.png"))
+    
+    # Busqueda de icono user.png
+    direct = obtenerPathIcono('user.png')
+    print(direct)
+    assert direct  == os.path.realpath(os.path.join(DIRECTORIO_PROYECTO ,"archivos/Iconos/user.png"))
     print("****** PRUEBA IMAGEN FINALIZADA SATISFACTORIAMENTE ******")
 
 
