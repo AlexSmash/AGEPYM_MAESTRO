@@ -9,8 +9,8 @@
         }, 
         "ESTILO": {
             "ICONOS": {
-            	"TEMAICONOS": "elementary",
-            	"TEMASICONOSDISPONIBLES": ["elementary","Moka"]
+            	"TEMAICONOS": "Faenza",
+            	"TEMASICONOSDISPONIBLES": ["elementary","Moka","Faenza"]
             }
         }
     }
