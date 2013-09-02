@@ -30,7 +30,7 @@ CONFIGURACION_ORIGINAL = """
     }
 }
 """ 
-    
+
 _DIRECCION_ACTUAL = os.path.dirname(os.path.realpath(__file__))
 
 DIRECTORIO_PROYECTO = os.path.realpath(os.path.join(_DIRECCION_ACTUAL ,".."))
